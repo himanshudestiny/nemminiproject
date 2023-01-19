@@ -5,10 +5,10 @@ const todoRouter = express.Router();
 
 todoRouter.use(express.json());
 
-todoRouter.get("/", async (req, res) => {
-    const loginId = localStorage.getItem("userId");
+todoRouter.get("/:id", async (req, res) => {
+     const ID = req.params.id;
      try {
-        const todo = await TodoModel.find();
+        const todo = await TodoModel.find( { userID: ID} );
         res.send(todo);
      }
      catch (err) {
